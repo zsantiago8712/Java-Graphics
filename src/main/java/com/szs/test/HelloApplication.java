@@ -1,4 +1,5 @@
-package com.szs.javagraphics;
+package com.szs.test;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,21 +14,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-public class HelloApplication  extends Application{
-
+public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         CategoryAxis yAxis = new CategoryAxis();
-        Files file = new Files();
-        Analizer anlz = new Analizer();
-        ArrayList<String> tweets = new ArrayList<String>();
-        ArrayList<String> wordsToSearch = new ArrayList<String>();
-        tweets = file.readFile("/Users/randymarsh/Documents/Java-Graphics/NeuralLink_tweets_clean2.csv");
-        wordsToSearch = file.readFile("/Users/randymarsh/Documents/Java-Graphics/words.csv");
-
-
         yAxis.setLabel("Palabras");
 
         NumberAxis xAxis = new NumberAxis();
@@ -37,10 +27,7 @@ public class HelloApplication  extends Application{
         BarChart<Number, String> chart = new BarChart<Number, String>(xAxis, yAxis);
         chart.setTitle("Prueba Ventana MFG");
         // agregamos datos
-
-
-        tweets = anlz.cleanTweets(tweets);
-        chart.setData(setTableData(anlz.countWordsInTweet(tweets, wordsToSearch), wordsToSearch));
+        chart.setData(obtenerDatos());
 
         // Paneles
         StackPane root = new StackPane();
@@ -52,15 +39,30 @@ public class HelloApplication  extends Application{
         primaryStage.setTitle("Prueba MFg");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
-    public static ObservableList<XYChart.Series<Number, String>> setTableData(int[] contador, ArrayList<String> words){
+    @SuppressWarnings("unchecked")
+    public static ObservableList<XYChart.Series<Number, String>> obtenerDatos() {
 
+        Analizer anlz = new Analizer();
         XYChart.Series<Number, String> frecuenciasPalabras = new XYChart.Series<>();
         frecuenciasPalabras.setName("Cantidad Palabras");
+        ArrayList<String> words = new ArrayList<String>();
+        words = anlz.getWordsList();
+        int i = 0;
 
-        for(int i = 0; i < contador.length; i++)
-            frecuenciasPalabras.getData().add(new XYChart.Data<>(contador[i], words.get(i)));
+        for(String word : words) {
+            i+= 10;
+            frecuenciasPalabras.getData().add(new XYChart.Data<>(i, word));
+        }
+
+
+        /*frecuenciasPalabras.getData().addAll(
+                new XYChart.Data<>(358, "Good"),
+                new XYChart.Data<>(54, "Feel"),
+                new XYChart.Data<>(50, "bad"),
+                new XYChart.Data<>(158, "plus"));*/
 
 
         ObservableList<XYChart.Series<Number, String>> data = FXCollections.observableArrayList();
@@ -69,6 +71,12 @@ public class HelloApplication  extends Application{
         return data;
     }
 
-    public static void main(String[] args) { launch();}
-
+    public static void main(String[] args) {
+        launch();
+    }
 }
+
+
+
+
+
