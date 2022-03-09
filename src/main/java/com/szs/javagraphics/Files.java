@@ -5,8 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase para el manejo de archivos
+ * @author Sebastian Castañeda
+ **/
 public class Files {
 
+    /**
+     * Lee archivos y guarda su contenido en un ArrayList
+     * @param pathFile
+     * @return
+     * @throws IOException
+     */
     public ArrayList<String> readFile(String pathFile) throws IOException {
         try {
             ArrayList<String> lines = new ArrayList();
@@ -17,7 +27,6 @@ public class Files {
                 if(!line.equals(""))
                     lines.add(line);
             }
-
 
             return lines;
         }catch(Exception e) {

@@ -22,8 +22,8 @@ public class HelloApplication  extends Application{
         CategoryAxis yAxis = new CategoryAxis();
         Files file = new Files();
         Analizer anlz = new Analizer();
-        ArrayList<String> tweets = new ArrayList<String>();
-        ArrayList<String> wordsToSearch = new ArrayList<String>();
+        ArrayList<String> tweets = new ArrayList();
+        ArrayList<String> wordsToSearch = new ArrayList();
         tweets = file.readFile("/Users/randymarsh/Documents/Java-Graphics/NeuralLink_tweets_clean2.csv");
         wordsToSearch = file.readFile("/Users/randymarsh/Documents/Java-Graphics/words.csv");
 
@@ -35,7 +35,7 @@ public class HelloApplication  extends Application{
 
 
         BarChart<Number, String> chart = new BarChart<Number, String>(xAxis, yAxis);
-        chart.setTitle("Prueba Ventana MFG");
+        chart.setTitle("NeuraLink Tweets");
         // agregamos datos
 
 
@@ -54,14 +54,21 @@ public class HelloApplication  extends Application{
         primaryStage.show();
     }
 
+    /**
+     * Setea los datos en las gráfica
+     * @param contador
+     * @param words
+     * @return
+     */
     public static ObservableList<XYChart.Series<Number, String>> setTableData(int[] contador, ArrayList<String> words){
 
         XYChart.Series<Number, String> frecuenciasPalabras = new XYChart.Series<>();
         frecuenciasPalabras.setName("Cantidad Palabras");
 
-        for(int i = 0; i < contador.length; i++)
+        for(int i = 0; i < contador.length; i++){
             frecuenciasPalabras.getData().add(new XYChart.Data<>(contador[i], words.get(i)));
-
+            System.out.println(words.get(i) + " -> " + contador[i]);
+        }
 
         ObservableList<XYChart.Series<Number, String>> data = FXCollections.observableArrayList();
         data.addAll(frecuenciasPalabras);
