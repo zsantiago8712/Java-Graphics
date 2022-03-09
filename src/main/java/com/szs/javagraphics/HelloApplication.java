@@ -49,7 +49,7 @@ public class HelloApplication  extends Application{
         // Tamaño del Frame
         Scene scene = new Scene(root, 640, 427);
 
-        primaryStage.setTitle("Prueba MFg");
+        primaryStage.setTitle("NeuraLink");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
