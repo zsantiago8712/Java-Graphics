@@ -14,7 +14,7 @@ public class Files {
     /**
      * Lee archivos y guarda su contenido en un ArrayList
      * @param pathFile
-     * @return
+     * @return ArrayList<String> (Los datos leidos del archivo)
      * @throws IOException
      */
     public ArrayList<String> readFile(String pathFile) throws IOException {

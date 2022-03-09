@@ -51,7 +51,6 @@ public class Analizer {
             }
             index = 0;
         }
-
         return numberOfWords;
     }
 }
