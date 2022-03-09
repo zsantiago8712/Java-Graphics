@@ -1,6 +1,7 @@
 package com.szs.javagraphics;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Clase para analizar y limpiar los datos de un arrayList
@@ -38,16 +39,14 @@ public class Analizer {
         int index = 0;
         for(String tweet : tweets){
             for(String wordToFind : wordsToFind){
-                if(tweet.contains(wordToFind)) {
+                if(tweet.contains(wordToFind) || tweet.contains(wordToFind.toLowerCase())) {
 
                     String[] words = tweet.split(" ");
                     for(String word : words){
-                        if(word.equals(wordToFind))
+                        if(word.equalsIgnoreCase(wordToFind))
                             numberOfWords[index]++;
                     }
-
                 }
-
                 index++;
             }
             index = 0;
