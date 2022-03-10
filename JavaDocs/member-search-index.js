@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.szs.javagraphics","c":"Files","l":"Files()","u":"%3Cinit%3E()"},{"p":"com.szs.javagraphics","c":"Files","l":"readFile(String)","u":"readFile(java.lang.String)"}];updateSearchResults();
